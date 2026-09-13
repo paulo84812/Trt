@@ -1,0 +1,506 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap');
+
+.sp-app{
+  --ink:#1b1512;
+  --espresso:#3f2a1e;
+  --walnut:#8c5a38;
+  --cream:#faf6f0;
+  --sand:#ecdfc9;
+  --line:#ddccb2;
+  --stone:#6b5d4f;
+
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+
+.sp-app *{box-sizing:border-box;}
+
+/* ---------- Top bar ---------- */
+.sp-topbar{background:var(--espresso);color:var(--cream);padding:22px 32px 0;}
+.sp-topbar-inner{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;gap:20px;flex-wrap:wrap;}
+.sp-brand{display:flex;align-items:center;gap:11px;}
+.sp-brand-mark{width:32px;height:32px;border-radius:50%;border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sp-brand-mark::after{content:'';width:11px;height:11px;border-radius:50%;background:var(--sand);}
+.sp-brand-name{font-family:'Fraunces',serif;font-style:italic;font-size:22px;font-weight:600;letter-spacing:.2px;}
+.sp-brand-sub{font-size:11.5px;color:rgba(250,246,240,.55);margin-left:43px;margin-top:-4px;display:block;}
+
+.sp-tabs{display:flex;gap:2px;flex-wrap:wrap;}
+.sp-tab{background:transparent;border:none;color:rgba(250,246,240,.62);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;padding:10px 16px;cursor:pointer;border-radius:8px 8px 0 0;transition:color .18s,background .18s;white-space:nowrap;}
+.sp-tab:hover{color:var(--cream);}
+.sp-tab.is-active{color:var(--ink);background:var(--cream);font-weight:600;}
+
+.sp-sprockets{height:9px;background:var(--espresso);background-image:radial-gradient(circle,var(--cream) 2.3px,transparent 2.4px);background-size:15px 9px;background-position:9px center;}
+
+/* ---------- Content shell ---------- */
+.sp-content{padding:34px 36px 56px;}
+.sp-module{display:none;animation:sp-fade .35s ease;}
+.sp-module.is-active{display:block;}
+@keyframes sp-fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+.sp-page-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:26px;gap:16px;flex-wrap:wrap;}
+.sp-page-head h1{font-family:'Fraunces',serif;font-weight:600;font-size:27px;margin:0 0 6px;}
+.sp-page-head p{margin:0;color:var(--stone);font-size:14px;}
+
+.sp-btn{font-family:'Inter',sans-serif;font-weight:600;font-size:13px;padding:10px 20px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .16s,color .16s;}
+.sp-btn:hover{background:var(--ink);color:var(--cream);}
+.sp-btn.sp-primary{background:var(--ink);color:var(--cream);}
+.sp-btn.sp-primary:hover{background:var(--espresso);}
+.sp-btn.sp-ghost{border-color:var(--line);color:var(--stone);}
+.sp-btn.sp-ghost:hover{border-color:var(--ink);color:var(--ink);background:transparent;}
+
+.sp-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;}
+.sp-card h2{font-family:'Fraunces',serif;font-weight:600;font-size:18px;margin:0 0 4px;}
+.sp-card .sp-card-sub{font-size:12.5px;color:var(--stone);margin:0 0 16px;}
+
+/* status pills — brown/black/white only */
+.sp-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:11.5px;font-weight:600;border:1px solid;line-height:1.6;}
+.sp-pill.pending{color:var(--walnut);border-color:var(--walnut);background:rgba(140,90,56,.08);}
+.sp-pill.confirmed{color:var(--ink);border-color:var(--ink);background:rgba(27,21,18,.05);}
+.sp-pill.progress{color:#fff;border-color:var(--walnut);background:var(--walnut);}
+.sp-pill.done{color:#fff;border-color:var(--ink);background:var(--ink);}
+.sp-pill.cancelled{color:var(--stone);border-color:var(--line);background:transparent;text-decoration:line-through;}
+
+/* ================= MODULE 7 — User Dashboard ================= */
+.sp-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.sp-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+.sp-profile-top{display:flex;gap:16px;align-items:center;margin-bottom:18px;}
+.sp-avatar{width:56px;height:56px;border-radius:50%;background:var(--espresso);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:19px;font-weight:600;flex-shrink:0;}
+.sp-profile-name{font-weight:600;font-size:15.5px;}
+.sp-profile-email{font-size:12.5px;color:var(--stone);}
+.sp-detail-row{display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-top:1px solid var(--line);}
+.sp-detail-row span:first-child{color:var(--stone);}
+
+.sp-session-big{font-family:'Fraunces',serif;font-size:26px;font-weight:600;margin:2px 0 0;}
+.sp-session-meta{font-size:13px;color:var(--stone);margin:4px 0 16px;}
+.sp-session-actions{display:flex;gap:10px;margin-top:16px;}
+
+.sp-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;margin-top:6px;}
+.sp-thumb{aspect-ratio:3/4;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cream);gap:6px;}
+.sp-thumb span{font-size:11px;opacity:.85;}
+.sp-thumb svg{opacity:.9;}
+
+.sp-settings-list{list-style:none;margin:0;padding:0;}
+.sp-settings-list li{display:flex;justify-content:space-between;align-items:center;padding:14px 2px;border-bottom:1px solid var(--line);font-size:14px;cursor:pointer;transition:color .15s;}
+.sp-settings-list li:last-child{border-bottom:none;}
+.sp-settings-list li:hover{color:var(--walnut);}
+.sp-settings-list .sp-chev{color:var(--stone);font-size:15px;}
+
+/* ================= MODULE 8 — Admin Panel ================= */
+.sp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;}
+.sp-stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;}
+.sp-stat .sp-stat-label{font-size:12px;color:var(--stone);margin-bottom:8px;}
+.sp-stat .sp-stat-num{font-family:'Fraunces',serif;font-size:25px;font-weight:600;}
+.sp-stat .sp-stat-trend{font-size:11.5px;color:var(--walnut);font-weight:600;margin-top:6px;}
+
+.sp-table-wrap{overflow-x:auto;}
+.sp-table{width:100%;border-collapse:collapse;min-width:640px;}
+.sp-table th{text-align:left;font-size:11.5px;color:var(--stone);font-weight:600;padding:0 14px 10px;border-bottom:1.5px solid var(--ink);}
+.sp-table td{padding:13px 14px;border-bottom:1px solid var(--line);font-size:13.5px;}
+.sp-table tr:last-child td{border-bottom:none;}
+.sp-table tr:hover td{background:var(--cream);}
+.sp-icon-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin-right:4px;}
+.sp-icon-btn:hover{border-color:var(--ink);}
+
+.sp-staff-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);}
+.sp-staff-row:last-child{border-bottom:none;}
+.sp-staff-name{font-size:13.5px;font-weight:600;}
+.sp-staff-role{font-size:11.5px;color:var(--stone);}
+.sp-switch{width:36px;height:21px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;flex-shrink:0;transition:background .18s;}
+.sp-switch::after{content:'';position:absolute;top:2px;left:2px;width:17px;height:17px;border-radius:50%;background:#fff;transition:left .18s;}
+.sp-switch.is-on{background:var(--ink);}
+.sp-switch.is-on::after{left:17px;}
+
+.sp-quick-actions{display:flex;flex-direction:column;gap:10px;}
+
+/* ================= MODULE 9 — Booking Lifecycle ================= */
+.sp-stepper{display:flex;align-items:flex-start;margin:6px 0 4px;}
+.sp-step{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4px;}
+.sp-step .sp-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--stone);position:relative;z-index:1;}
+.sp-step .sp-line{position:absolute;top:11px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0;}
+.sp-step:first-child .sp-line{display:none;}
+.sp-step.is-done .sp-dot{background:var(--ink);border-color:var(--ink);color:#fff;}
+.sp-step.is-done .sp-line{background:var(--ink);}
+.sp-step.is-active .sp-dot{background:var(--walnut);border-color:var(--walnut);color:#fff;box-shadow:0 0 0 4px rgba(140,90,56,.16);}
+.sp-step.is-active .sp-line{background:var(--ink);}
+.sp-step .sp-step-label{margin-top:9px;font-size:11.5px;color:var(--stone);max-width:92px;line-height:1.3;}
+.sp-step.is-active .sp-step-label,.sp-step.is-done .sp-step-label{color:var(--ink);font-weight:600;}
+
+.sp-timeline{list-style:none;margin:0;padding:0 0 0 20px;border-left:2px solid var(--line);}
+.sp-timeline li{position:relative;padding-bottom:18px;}
+.sp-timeline li:last-child{padding-bottom:0;}
+.sp-timeline li::before{content:'';position:absolute;left:-26px;top:3px;width:9px;height:9px;border-radius:50%;background:var(--walnut);border:2px solid #fff;box-shadow:0 0 0 1.5px var(--walnut);}
+.sp-t-time{font-size:11px;color:var(--stone);margin-bottom:2px;}
+.sp-t-text{font-size:13.5px;}
+
+.sp-booking-list{margin-top:10px;}
+.sp-booking-row{display:grid;grid-template-columns:76px 1.4fr 1fr 110px 110px;gap:14px;align-items:center;padding:13px 16px;border:1px solid var(--line);border-radius:8px;margin-bottom:9px;cursor:pointer;background:#fff;transition:border-color .15s,background .15s;}
+.sp-booking-row:hover{border-color:var(--walnut);}
+.sp-booking-row.is-selected{border-color:var(--ink);background:var(--sand);}
+.sp-booking-id{font-size:11.5px;color:var(--stone);font-weight:600;}
+.sp-booking-cust{font-size:13.5px;font-weight:600;}
+.sp-booking-pkg{font-size:12px;color:var(--stone);}
+.sp-mini-progress{height:5px;background:var(--sand);border-radius:3px;overflow:hidden;}
+.sp-mini-progress span{display:block;height:100%;background:var(--ink);border-radius:3px;}
+
+/* responsive */
+@media (max-width:820px){
+  .sp-grid-2,.sp-grid-3{grid-template-columns:1fr;}
+  .sp-stats{grid-template-columns:repeat(2,1fr);}
+  .sp-booking-row{grid-template-columns:1fr;gap:6px;}
+  .sp-content{padding:26px 18px 40px;}
+  .sp-step .sp-step-label{display:none;}
+}
+</style>
+
+<div class="sp-app">
+
+  <div class="sp-topbar">
+    <div class="sp-topbar-inner">
+      <div>
+        <div class="sp-brand">
+          <div class="sp-brand-mark"></div>
+          <span class="sp-brand-name">Self-pic</span>
+        </div>
+        <span class="sp-brand-sub">Studio management</span>
+      </div>
+      <nav class="sp-tabs">
+        <button class="sp-tab is-active" data-target="module-7">Module 7 · User Dashboard</button>
+        <button class="sp-tab" data-target="module-8">Module 8 · Admin Panel</button>
+        <button class="sp-tab" data-target="module-9">Module 9 · Booking Lifecycle</button>
+      </nav>
+    </div>
+  </div>
+  <div class="sp-sprockets"></div>
+
+  <div class="sp-content">
+
+    <!-- ============ MODULE 7 ============ -->
+    <section id="module-7" class="sp-module is-active">
+      <div class="sp-page-head">
+        <div>
+          <h1 id="sp-greeting">Good afternoon, Andrea</h1>
+          <p>Here's what's happening with your Self-pic account.</p>
+        </div>
+        <button class="sp-btn sp-primary">Book a new session</button>
+      </div>
+
+      <div class="sp-grid-2" style="margin-bottom:20px;">
+        <div class="sp-card">
+          <h2>Your profile</h2>
+          <p class="sp-card-sub">Personal details and account info</p>
+          <div class="sp-profile-top">
+            <div class="sp-avatar">AC</div>
+            <div>
+              <div class="sp-profile-name">Andrea Cruz</div>
+              <div class="sp-profile-email">andrea.cruz@email.com</div>
+            </div>
+          </div>
+          <div class="sp-detail-row"><span>Phone</span><span>0917 234 5678</span></div>
+          <div class="sp-detail-row"><span>Member since</span><span>March 2025</span></div>
+          <div class="sp-detail-row"><span>Loyalty tier</span><span>Gold — 8 sessions</span></div>
+          <div style="margin-top:16px;"><button class="sp-btn sp-ghost">Edit profile</button></div>
+        </div>
+
+        <div class="sp-card">
+          <h2>Upcoming session</h2>
+          <p class="sp-card-sub">Your next booking with us</p>
+          <span class="sp-pill confirmed">Confirmed</span>
+          <div class="sp-session-big">Sept 14, 2:30 PM</div>
+          <div class="sp-session-meta">Classic Duo Strip · Self-pic Studio, Bay 2</div>
+          <div class="sp-detail-row" style="border-top:none;padding-top:0;"><span>Assigned staff</span><span>Jaira M.</span></div>
+          <div class="sp-detail-row"><span>Amount paid</span><span>₱650 of ₱650</span></div>
+          <div class="sp-session-actions">
+            <button class="sp-btn sp-ghost">Reschedule</button>
+            <button class="sp-btn sp-ghost">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sp-card" style="margin-bottom:20px;">
+        <h2>Your past sessions</h2>
+        <p class="sp-card-sub">Six most recent photo strips on file</p>
+        <div class="sp-gallery" id="sp-gallery"></div>
+      </div>
+
+      <div class="sp-card">
+        <h2>Account settings</h2>
+        <p class="sp-card-sub">Manage how your account works</p>
+        <ul class="sp-settings-list">
+          <li><span>Change password</span><span class="sp-chev">›</span></li>
+          <li><span>Payment methods</span><span class="sp-chev">›</span></li>
+          <li><span>Notification preferences</span><span class="sp-chev">›</span></li>
+          <li><span>Privacy &amp; data</span><span class="sp-chev">›</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ MODULE 8 ============ -->
+    <section id="module-8" class="sp-module">
+      <div class="sp-page-head">
+        <div>
+          <h1>Studio overview</h1>
+          <p>Admin control panel — Saturday, Sept 13</p>
+        </div>
+        <button class="sp-btn sp-primary">+ Add booking</button>
+      </div>
+
+      <div class="sp-stats">
+        <div class="sp-stat">
+          <div class="sp-stat-label">Today's bookings</div>
+          <div class="sp-stat-num">12</div>
+          <div class="sp-stat-trend">+3 vs last Saturday</div>
+        </div>
+        <div class="sp-stat">
+          <div class="sp-stat-label">Revenue this month</div>
+          <div class="sp-stat-num">₱184,500</div>
+          <div class="sp-stat-trend">+18% vs August</div>
+        </div>
+        <div class="sp-stat">
+          <div class="sp-stat-label">Active sessions</div>
+          <div class="sp-stat-num">3</div>
+          <div class="sp-stat-trend">Across 2 studio bays</div>
+        </div>
+        <div class="sp-stat">
+          <div class="sp-stat-label">New customers</div>
+          <div class="sp-stat-num">27</div>
+          <div class="sp-stat-trend">This month</div>
+        </div>
+      </div>
+
+      <div class="sp-card" style="margin-bottom:20px;">
+        <h2>Recent bookings</h2>
+        <p class="sp-card-sub">Manage today's schedule</p>
+        <div class="sp-table-wrap">
+          <table class="sp-table">
+            <thead>
+              <tr><th>Customer</th><th>Package</th><th>Date &amp; time</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody id="sp-admin-table"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sp-grid-2">
+        <div class="sp-card">
+          <h2>Staff on duty</h2>
+          <p class="sp-card-sub">Toggle availability for today</p>
+          <div id="sp-staff-list"></div>
+        </div>
+        <div class="sp-card">
+          <h2>Quick actions</h2>
+          <p class="sp-card-sub">Common studio tasks</p>
+          <div class="sp-quick-actions">
+            <button class="sp-btn sp-ghost">+ Add staff member</button>
+            <button class="sp-btn sp-ghost">Manage packages &amp; pricing</button>
+            <button class="sp-btn sp-ghost">Export monthly report</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MODULE 9 ============ -->
+    <section id="module-9" class="sp-module">
+      <div class="sp-page-head">
+        <div>
+          <h1>Booking lifecycle</h1>
+          <p>Select a booking below to track its current stage</p>
+        </div>
+      </div>
+
+      <div class="sp-card" style="margin-bottom:20px;">
+        <h2 id="sp-lc-title">SP-1042 — Andrea Cruz</h2>
+        <p class="sp-card-sub" id="sp-lc-sub">Classic Duo Strip · Sept 14, 2:30 PM</p>
+        <div class="sp-stepper" id="sp-stepper"></div>
+      </div>
+
+      <div class="sp-grid-2" style="margin-bottom:22px;">
+        <div class="sp-card">
+          <h2>Booking details</h2>
+          <p class="sp-card-sub">Current information on file</p>
+          <div id="sp-lc-detail"></div>
+        </div>
+        <div class="sp-card">
+          <h2>Activity log</h2>
+          <p class="sp-card-sub">Status history for this booking</p>
+          <ul class="sp-timeline" id="sp-lc-timeline"></ul>
+        </div>
+      </div>
+
+      <div class="sp-card">
+        <h2>All bookings</h2>
+        <p class="sp-card-sub">Click a booking to view its lifecycle above</p>
+        <div class="sp-booking-list" id="sp-booking-list"></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const root = document.currentScript.previousElementSibling;
+
+  // ---------- Tab switching ----------
+  const tabs = root.querySelectorAll('.sp-tab');
+  const modules = root.querySelectorAll('.sp-module');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('is-active'));
+      modules.forEach(m=>m.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      root.querySelector('#'+tab.dataset.target).classList.add('is-active');
+    });
+  });
+
+  // ---------- Greeting ----------
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+  root.querySelector('#sp-greeting').textContent = greeting + ', Andrea';
+
+  // ---------- Module 7: gallery ----------
+  const gallery = root.querySelector('#sp-gallery');
+  const sessions = [
+    {date:'Aug 30', tone:'#8c5a38'},
+    {date:'Aug 12', tone:'#3f2a1e'},
+    {date:'Jul 27', tone:'#6b4a30'},
+    {date:'Jul 09', tone:'#4a2f22'},
+    {date:'Jun 21', tone:'#7a5138'},
+    {date:'Jun 02', tone:'#33241a'}
+  ];
+  gallery.innerHTML = sessions.map(s => `
+    <div class="sp-thumb" style="background:linear-gradient(160deg, ${s.tone}, #1b1512);">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 8a2 2 0 0 1 2-2h1.2l.9-1.5A1 1 0 0 1 9 4h6a1 1 0 0 1 .9.5L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" stroke="#faf6f0" stroke-width="1.4"/><circle cx="12" cy="13" r="3.4" stroke="#faf6f0" stroke-width="1.4"/></svg>
+      <span>${s.date}</span>
+    </div>`).join('');
+
+  // ---------- Module 8: table + staff ----------
+  const adminBookings = [
+    {name:'Miguel Santos', pkg:'Grand Group Session', when:'Today, 11:00 AM', status:'progress', label:'In session'},
+    {name:'Liza Fernandez', pkg:'Couple Special', when:'Today, 1:15 PM', status:'confirmed', label:'Confirmed'},
+    {name:'Paolo Reyes', pkg:'Solo Portrait', when:'Today, 3:00 PM', status:'pending', label:'Pending'},
+    {name:'Reign Uy', pkg:'Classic Duo Strip', when:'Yesterday, 4:30 PM', status:'done', label:'Delivered'},
+    {name:'Carlo Dizon', pkg:'Grand Group Session', when:'Yesterday, 2:00 PM', status:'cancelled', label:'Cancelled'}
+  ];
+  root.querySelector('#sp-admin-table').innerHTML = adminBookings.map(b => `
+    <tr>
+      <td>${b.name}</td>
+      <td>${b.pkg}</td>
+      <td>${b.when}</td>
+      <td><span class="sp-pill ${b.status}">${b.label}</span></td>
+      <td>
+        <button class="sp-icon-btn" title="View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z" stroke="#1b1512" stroke-width="1.6"/><circle cx="12" cy="12" r="2.6" stroke="#1b1512" stroke-width="1.6"/></svg>
+        </button>
+        <button class="sp-icon-btn" title="Edit">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 20h4l10.5-10.5a2 2 0 0 0 0-2.8l-1.2-1.2a2 2 0 0 0-2.8 0L4 16v4Z" stroke="#1b1512" stroke-width="1.6"/></svg>
+        </button>
+      </td>
+    </tr>`).join('');
+
+  const staff = [
+    {name:'Jaira Marasigan', role:'Lead photographer', on:true},
+    {name:'Denz Robles', role:'Studio assistant', on:true},
+    {name:'Kyla Santos', role:'Photo editor', on:false},
+    {name:'Marco Vidal', role:'Front desk', on:true}
+  ];
+  const staffList = root.querySelector('#sp-staff-list');
+  staffList.innerHTML = staff.map((s,i) => `
+    <div class="sp-staff-row">
+      <div>
+        <div class="sp-staff-name">${s.name}</div>
+        <div class="sp-staff-role">${s.role}</div>
+      </div>
+      <div class="sp-switch ${s.on?'is-on':''}" data-i="${i}"></div>
+    </div>`).join('');
+  staffList.querySelectorAll('.sp-switch').forEach(sw=>{
+    sw.addEventListener('click', ()=> sw.classList.toggle('is-on'));
+  });
+
+  // ---------- Module 9: lifecycle ----------
+  const stages = ['Pending','Confirmed','Preparing studio','In session','Editing photos','Ready for pickup','Completed'];
+
+  const lcBookings = [
+    {id:'SP-1042', customer:'Andrea Cruz', pkg:'Classic Duo Strip', when:'Sept 14, 2:30 PM', staff:'Jaira M.', stage:1,
+      timeline:[['Sept 10, 9:02 AM','Booking placed online'],['Sept 10, 9:15 AM','Payment received in full'],['Sept 10, 9:20 AM','Booking confirmed and slot reserved']]},
+    {id:'SP-1041', customer:'Miguel Santos', pkg:'Grand Group Session', when:'Sept 13, 11:00 AM', staff:'Denz R.', stage:3,
+      timeline:[['Sept 8, 2:10 PM','Booking confirmed'],['Sept 13, 10:45 AM','Studio Bay 2 prepared'],['Sept 13, 11:02 AM','Session started']]},
+    {id:'SP-1039', customer:'Liza Fernandez', pkg:'Couple Special', when:'Sept 12, 4:00 PM', staff:'Jaira M.', stage:6,
+      timeline:[['Sept 5, 1:00 PM','Booking confirmed'],['Sept 12, 4:40 PM','Session completed'],['Sept 12, 6:00 PM','Photos edited and finalized'],['Sept 13, 9:00 AM','Order delivered to customer']]},
+    {id:'SP-1035', customer:'Paolo Reyes', pkg:'Solo Portrait', when:'Sept 15, 1:15 PM', staff:'Unassigned', stage:0,
+      timeline:[['Sept 13, 8:20 AM','Booking placed, awaiting payment']]}
+  ];
+
+  const stepperEl = root.querySelector('#sp-stepper');
+  const detailEl = root.querySelector('#sp-lc-detail');
+  const timelineEl = root.querySelector('#sp-lc-timeline');
+  const titleEl = root.querySelector('#sp-lc-title');
+  const subEl = root.querySelector('#sp-lc-sub');
+  const listEl = root.querySelector('#sp-booking-list');
+
+  function renderStepper(currentStage){
+    stepperEl.innerHTML = stages.map((label,i)=>{
+      let cls = '';
+      if(i < currentStage) cls = 'is-done';
+      else if(i === currentStage) cls = 'is-active';
+      return `<div class="sp-step ${cls}">
+        <div class="sp-line"></div>
+        <div class="sp-dot">${i < currentStage ? '✓' : i+1}</div>
+        <div class="sp-step-label">${label}</div>
+      </div>`;
+    }).join('');
+  }
+
+  function renderBooking(b){
+    titleEl.textContent = `${b.id} — ${b.customer}`;
+    subEl.textContent = `${b.pkg} · ${b.when}`;
+    renderStepper(b.stage);
+
+    detailEl.innerHTML = `
+      <div class="sp-detail-row" style="border-top:none;padding-top:0;"><span>Customer</span><span>${b.customer}</span></div>
+      <div class="sp-detail-row"><span>Package</span><span>${b.pkg}</span></div>
+      <div class="sp-detail-row"><span>Date &amp; time</span><span>${b.when}</span></div>
+      <div class="sp-detail-row"><span>Assigned staff</span><span>${b.staff}</span></div>
+      <div class="sp-detail-row"><span>Current stage</span><span>${stages[b.stage]}</span></div>`;
+
+    timelineEl.innerHTML = b.timeline.map(([time,text]) => `
+      <li><div class="sp-t-time">${time}</div><div class="sp-t-text">${text}</div></li>`).join('');
+  }
+
+  function pillFor(stage){
+    if(stage === 0) return ['pending','Pending'];
+    if(stage === stages.length-1) return ['done','Completed'];
+    return ['progress', stages[stage]];
+  }
+
+  function renderList(selectedId){
+    listEl.innerHTML = lcBookings.map(b=>{
+      const [cls,label] = pillFor(b.stage);
+      const pct = Math.round((b.stage/(stages.length-1))*100);
+      return `<div class="sp-booking-row ${b.id===selectedId?'is-selected':''}" data-id="${b.id}">
+        <div class="sp-booking-id">${b.id}</div>
+        <div><div class="sp-booking-cust">${b.customer}</div><div class="sp-booking-pkg">${b.pkg}</div></div>
+        <div class="sp-mini-progress"><span style="width:${pct}%"></span></div>
+        <div><span class="sp-pill ${cls}">${label}</span></div>
+        <div style="font-size:12px;color:var(--stone);text-align:right;">${b.when}</div>
+      </div>`;
+    }).join('');
+
+    listEl.querySelectorAll('.sp-booking-row').forEach(row=>{
+      row.addEventListener('click', ()=>{
+        const b = lcBookings.find(x=>x.id===row.dataset.id);
+        renderBooking(b);
+        renderList(b.id);
+      });
+    });
+  }
+
+  renderBooking(lcBookings[0]);
+  renderList(lcBookings[0].id);
+})();
+</script>
